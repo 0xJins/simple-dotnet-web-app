@@ -1,18 +1,13 @@
 pipeline {
-  agent any
-  environment {
-      DOTNET_SYSTEM_GLOBALIZATION_INVARIANT = 1
-  }
-  stages {
-    stage('Build') {
-      steps {
-        withDotNet(sdk: '.NET 6') {
-      sh '''
-            dotnet restore
-            dotnet build
-          '''
+    agent any
+    stages {
+        stage('Build') { 
+            withDotNet(sdk: '.NET8') {
+                steps {
+                    sh 'dotnet restore' 
+                    sh 'dotnet build --no-restore' 
+                }
+            }
         }
-      }
-    }    
-  }
+    }
 }
