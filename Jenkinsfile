@@ -1,11 +1,12 @@
 pipeline {
-    withDotNet
     agent any
     stages {
         stage('Build') { 
             steps {
-                sh 'dotnet restore' 
-                sh 'dotnet build --no-restore' 
+                withDotNet(sdk: '.NET8') {
+                    sh 'dotnet restore' 
+                    sh 'dotnet build --no-restore' 
+                }
             }
         }
     }
