@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                withDotNet(sdk: '.NET8') {
+                withDotNet(sdk: '.NET 8') {
                         sh 'dotnet restore' 
                         sh 'dotnet build --no-restore' 
                 }
